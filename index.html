@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0d0d10">
-<title>Muse — A Masterpiece for Your Mood</title>
-<meta name="description" content="Tell us your mood and where you are — we'll hang a masterpiece just for you.">
+<title>Muse - A Masterpiece for Your Mood</title>
+<meta name="description" content="Tell us your mood and where you are - we'll hang a masterpiece just for you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@
     color: var(--gold);
     margin-bottom: 18px;
   }
-  .eyebrow::before, .eyebrow::after { content: '—'; color: var(--gold-soft); margin: 0 10px; opacity: .6; }
+  .eyebrow::before, .eyebrow::after { content: '-'; color: var(--gold-soft); margin: 0 10px; opacity: .6; }
   h1 {
     font-family: var(--serif);
     font-weight: 500;
@@ -345,7 +345,7 @@
 <section class="screen active" id="intro">
   <p class="eyebrow">The Mood Gallery</p>
   <h1>Muse<em>.</em></h1>
-  <p class="tagline">Tell us how you feel and where you are — we'll hang a masterpiece just for you.</p>
+  <p class="tagline">Tell us how you feel and where you are - we'll hang a masterpiece just for you.</p>
 
   <div class="controls">
     <div class="field">
@@ -375,7 +375,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
         </button>
       </div>
-      <p class="hint" id="locHint">Tap the arrow and we'll match the art to your surroundings — or type a place.</p>
+      <p class="hint" id="locHint">Tap the arrow and we'll match the art to your surroundings, or type a place.</p>
     </div>
     <button class="btn btn-gold" id="revealBtn" disabled>Reveal my masterpiece</button>
   </div>
@@ -424,14 +424,14 @@
 
 <script>
 const ART = [
-  // ——— Caravaggio ———
+  // Caravaggio
   { t:"The Calling of Saint Matthew", a:"Caravaggio", y:"1599–1600", m:"San Luigi dei Francesi, Rome",
     moods:["curious","dramatic"], locs:["city","home"],
-    why:"A shaft of light cuts through an ordinary room — the moment everything changes.",
+    why:"A shaft of light cuts through an ordinary room - the moment everything changes.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Caravaggio_%E2%80%94_The_Calling_of_Saint_Matthew.jpg/1920px-Caravaggio_%E2%80%94_The_Calling_of_Saint_Matthew.jpg" },
   { t:"Judith Beheading Holofernes", a:"Caravaggio", y:"c. 1599", m:"Palazzo Barberini, Rome",
     moods:["dramatic","rebellious"], locs:["city"],
-    why:"Fury, candlelight and resolve — Caravaggio at his most unflinching.",
+    why:"Fury, candlelight and resolve - Caravaggio at his most unflinching.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Caravaggio_-_Giuditta_e_Oloferne_%28ca._1599%29.jpg/1920px-Caravaggio_-_Giuditta_e_Oloferne_%28ca._1599%29.jpg" },
   { t:"Narcissus", a:"Caravaggio", y:"1597–1599", m:"Palazzo Barberini, Rome",
     moods:["melancholic","romantic"], locs:["home","country"],
@@ -439,35 +439,35 @@ const ART = [
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Narcissus-Caravaggio_%281594-96%29_edited.jpg/1920px-Narcissus-Caravaggio_%281594-96%29_edited.jpg" },
   { t:"Basket of Fruit", a:"Caravaggio", y:"c. 1599", m:"Biblioteca Ambrosiana, Milan",
     moods:["peaceful","joyful"], locs:["country","home"],
-    why:"Quiet abundance — even a wilting leaf is given its dignity.",
+    why:"Quiet abundance - even a wilting leaf is given its dignity.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Canestra_di_frutta_%28Caravaggio%29.jpg/1920px-Canestra_di_frutta_%28Caravaggio%29.jpg" },
   { t:"The Cardsharps", a:"Caravaggio", y:"c. 1595", m:"Kimbell Art Museum, Fort Worth",
     moods:["joyful","curious","rebellious","energetic"], locs:["city","road"],
-    why:"A hustle in progress — keep your eye on the boy with the extra cards.",
+    why:"A hustle in progress - keep your eye on the boy with the extra cards.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Caravaggio_-_The_Cardsharps_%281596-97%29_Kimbell_Art_Museum.jpg/1920px-Caravaggio_-_The_Cardsharps_%281596-97%29_Kimbell_Art_Museum.jpg" },
 
-  // ——— Bosch ———
+  // Bosch
   { t:"The Garden of Earthly Delights", a:"Hieronymus Bosch", y:"1490–1510", m:"Museo del Prado, Madrid",
     moods:["dreamy","curious","joyful","energetic"], locs:["country","home","sea"],
     why:"Five centuries old and still the strangest dream anyone ever painted.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/The_Garden_of_earthly_delights.jpg/1920px-The_Garden_of_earthly_delights.jpg" },
   { t:"The Haywain Triptych", a:"Hieronymus Bosch", y:"c. 1516", m:"Museo del Prado, Madrid",
     moods:["curious","rebellious","energetic"], locs:["road","country"],
-    why:"The whole world chasing a wagon of hay — Bosch's sly portrait of desire.",
+    why:"The whole world chasing a wagon of hay - Bosch's sly portrait of desire.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bosch_-_Haywain_Triptych.jpg/1920px-Bosch_-_Haywain_Triptych.jpg" },
   { t:"Ship of Fools", a:"Hieronymus Bosch", y:"c. 1490–1500", m:"Musée du Louvre, Paris",
     moods:["joyful","rebellious","energetic"], locs:["sea","road"],
-    why:"A boatload of revelers drifting nowhere in particular — sound familiar?",
+    why:"A boatload of revelers drifting nowhere in particular - sound familiar?",
     u:"https://upload.wikimedia.org/wikipedia/commons/a/a2/Jheronimus_Bosch_011.jpg" },
   { t:"The Conjurer", a:"Hieronymus Bosch", y:"1496–1520", m:"Musée Municipal, Saint-Germain-en-Laye",
     moods:["curious","joyful"], locs:["city"],
-    why:"Watch the magician — and watch the man stealing the watcher's purse.",
+    why:"Watch the magician, and watch the man stealing the watcher's purse.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Hieronymus_Bosch_051.jpg/1920px-Hieronymus_Bosch_051.jpg" },
 
-  // ——— Picasso ———
+  // Picasso
   { t:"The Old Guitarist", a:"Pablo Picasso", y:"1903–1904", m:"Art Institute of Chicago",
     moods:["melancholic"], locs:["city","home"],
-    why:"Blue on blue on blue — sorrow you can almost hear.",
+    why:"Blue on blue on blue - sorrow you can almost hear.",
     u:"https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/Old_guitarist_chicago.jpg/1920px-Old_guitarist_chicago.jpg" },
   { t:"Garçon à la Pipe", a:"Pablo Picasso", y:"1905", m:"Private collection",
     moods:["dreamy","romantic"], locs:["city","home"],
@@ -479,40 +479,40 @@ const ART = [
     u:"https://upload.wikimedia.org/wikipedia/en/thumb/c/ca/Family_of_Saltimbanques.JPG/1920px-Family_of_Saltimbanques.JPG" },
   { t:"Les Demoiselles d'Avignon", a:"Pablo Picasso", y:"1907", m:"Museum of Modern Art, New York",
     moods:["rebellious","dramatic","energetic"], locs:["city"],
-    why:"The painting that broke painting — five figures, zero apologies.",
+    why:"The painting that broke painting - five figures, zero apologies.",
     u:"https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Les_Demoiselles_d%27Avignon.jpg/1920px-Les_Demoiselles_d%27Avignon.jpg" },
   { t:"Guernica", a:"Pablo Picasso", y:"1937", m:"Museo Reina Sofía, Madrid",
     moods:["dramatic","rebellious"], locs:["city"],
-    why:"Grief and outrage at mural scale — art as a weapon against forgetting.",
+    why:"Grief and outrage at mural scale - art as a weapon against forgetting.",
     u:"https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg" },
   { t:"The Weeping Woman", a:"Pablo Picasso", y:"1937", m:"Tate Modern, London",
     moods:["melancholic","dramatic"], locs:["home","city"],
     why:"A face shattered by sorrow and reassembled in color.",
     u:"https://upload.wikimedia.org/wikipedia/en/1/14/Picasso_The_Weeping_Woman_Tate_identifier_T05010_10.jpg" },
 
-  // ——— Raffaello ———
+  // Raffaello
   { t:"The School of Athens", a:"Raffaello Sanzio", y:"1509–1511", m:"Stanza della Segnatura, Vatican",
     moods:["curious","peaceful"], locs:["city","home"],
     why:"Every great thinker of antiquity, arguing happily under one roof.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/1920px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg" },
   { t:"Sistine Madonna", a:"Raffaello Sanzio", y:"1512", m:"Gemäldegalerie Alte Meister, Dresden",
     moods:["peaceful","romantic"], locs:["home","mountains"],
-    why:"Serenity parting the curtains — and the two most famous cherubs in art.",
+    why:"Serenity parting the curtains - and the two most famous cherubs in art.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/RAFAEL_-_Madonna_Sixtina_%28Gem%C3%A4ldegalerie_Alter_Meister%2C_Dresden%2C_1513-14._%C3%93leo_sobre_lienzo%2C_265_x_196_cm%29.jpg/1920px-RAFAEL_-_Madonna_Sixtina_%28Gem%C3%A4ldegalerie_Alter_Meister%2C_Dresden%2C_1513-14._%C3%93leo_sobre_lienzo%2C_265_x_196_cm%29.jpg" },
   { t:"The Transfiguration", a:"Raffaello Sanzio", y:"1516–1520", m:"Pinacoteca Vaticana",
     moods:["dramatic","dreamy"], locs:["mountains"],
-    why:"Raphael's final work — heaven and earth colliding on one canvas.",
+    why:"Raphael's final work - heaven and earth colliding on one canvas.",
     u:"https://upload.wikimedia.org/wikipedia/commons/5/51/Transfiguration_Raphael.jpg" },
   { t:"La Fornarina", a:"Raffaello Sanzio", y:"c. 1519", m:"Palazzo Barberini, Rome",
     moods:["romantic","joyful"], locs:["home"],
-    why:"The baker's daughter he loved — her armband bears his signature.",
+    why:"The baker's daughter he loved - her armband bears his signature.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Raffaello_Sanzio_-_La_Fornarina_%28ca._1519-1520%29.jpg/1920px-Raffaello_Sanzio_-_La_Fornarina_%28ca._1519-1520%29.jpg" },
   { t:"Saint George and the Dragon", a:"Raffaello Sanzio", y:"c. 1506", m:"National Gallery of Art, Washington",
     moods:["dramatic","rebellious","curious","energetic"], locs:["mountains","road"],
     why:"A tiny panel with all the courage of an epic.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg/1920px-Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg" },
 
-  // ——— Dalí ———
+  // Dalí
   { t:"The Persistence of Memory", a:"Salvador Dalí", y:"1931", m:"Museum of Modern Art, New York",
     moods:["dreamy","peaceful"], locs:["sea","country"],
     why:"Time melting gently over a Catalan shoreline.",
@@ -523,11 +523,11 @@ const ART = [
     u:"https://upload.wikimedia.org/wikipedia/en/f/f6/Swans_reflecting_elephants.jpg" },
   { t:"Metamorphosis of Narcissus", a:"Salvador Dalí", y:"1937", m:"Tate Modern, London",
     moods:["dreamy","melancholic"], locs:["sea","mountains"],
-    why:"A myth dissolving into stone, egg and flower — obsession made landscape.",
+    why:"A myth dissolving into stone, egg and flower - obsession made landscape.",
     u:"https://upload.wikimedia.org/wikipedia/en/2/21/Metamorphosis_of_Narcissus.jpg" },
   { t:"Christ of Saint John of the Cross", a:"Salvador Dalí", y:"1951", m:"Kelvingrove, Glasgow",
     moods:["peaceful","dramatic"], locs:["sea","mountains"],
-    why:"Seen from above the world — stillness suspended over a quiet harbor.",
+    why:"Seen from above the world - stillness suspended over a quiet harbor.",
     u:"https://upload.wikimedia.org/wikipedia/en/8/8c/Christ_of_Saint_John_of_the_Cross.jpg" },
   { t:"Dream Caused by the Flight of a Bee", a:"Salvador Dalí", y:"1944", m:"Museo Thyssen-Bornemisza, Madrid",
     moods:["dreamy","rebellious","joyful","energetic"], locs:["sea"],
@@ -587,7 +587,7 @@ moodSel.addEventListener('change', () => {
 });
 moodCustom.addEventListener('input', checkReady);
 
-/* ——— location: geolocate or geocode typed place, then classify the surroundings ——— */
+/* Location: geolocate or geocode typed place, then classify the surroundings */
 const SEA_RX = /\b(sea|ocean|coast|coastal|beach|bay|island|isle|harbor|harbour|marina|port|cape|shore)\b/i;
 const LOC_VIBE = { sea:"by the water", mountains:"up in the mountains", city:"among the city lights", country:"in open country" };
 
@@ -606,7 +606,7 @@ async function getElevation(lat, lon) {
 
 locBtn.addEventListener('click', () => {
   if (!navigator.geolocation) {
-    locHint.textContent = "Location isn't available in this browser — just type where you are.";
+    locHint.textContent = "Location isn't available in this browser - just type where you are.";
     return;
   }
   locBtn.classList.add('busy');
@@ -622,16 +622,16 @@ locBtn.addEventListener('click', () => {
       const coastal = SEA_RX.test(JSON.stringify(geo.localityInfo || {})) || SEA_RX.test(place);
       loc = { key: classify({ elevation, coastal, isCity: !!geo.city }), label: place, query: place };
       locInput.value = place;
-      locHint.textContent = place + ' — ' + LOC_VIBE[loc.key] + '.';
+      locHint.textContent = place + ' - ' + LOC_VIBE[loc.key] + '.';
     } catch {
-      locHint.textContent = "Couldn't look that up — type your location instead.";
+      locHint.textContent = "Couldn't look that up - type your location instead.";
     }
     locBtn.classList.remove('busy');
   }, err => {
     locBtn.classList.remove('busy');
     locHint.textContent = err.code === 1
-      ? 'No problem — type where you are instead.'
-      : "Couldn't get a fix — type where you are instead.";
+      ? 'No problem - type where you are instead.'
+      : "Couldn't get a fix - type where you are instead.";
   }, { timeout: 10000, maximumAge: 300000 });
 });
 
@@ -730,16 +730,16 @@ $('downloadBtn').addEventListener('click', async () => {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-    toast('Saved — “' + current.t + '” is yours.');
+    toast('Saved - “' + current.t + '” is yours.');
   } catch {
     window.open(current.u, '_blank');
-    toast('Opened full image in a new tab — long-press or right-click to save.');
+    toast('Opened full image in a new tab - long-press or right-click to save.');
   }
 });
 
 $('shareBtn').addEventListener('click', async () => {
   if (!current) return;
-  const text = '“' + current.t + '” — ' + current.a + ', ' + current.y + '  #art #masterpiece';
+  const text = '“' + current.t + '” - ' + current.a + ', ' + current.y + '  #art #masterpiece';
   try {
     const blob = await fetchImage(current);
     const file = new File([blob], slug(current) + '.jpg', { type: blob.type || 'image/jpeg' });
@@ -760,7 +760,7 @@ $('shareBtn').addEventListener('click', async () => {
       setTimeout(() => URL.revokeObjectURL(a.href), 4000);
     } catch {}
     window.open('https://www.instagram.com/', '_blank');
-    toast('Image saved. Instagram is open — create a post and pick it from your gallery.');
+    toast('Image saved. Instagram is open - create a post and pick it from your gallery.');
   }
 });
 </script>
