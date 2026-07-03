@@ -118,6 +118,49 @@
   select:invalid { color: var(--ink-dim); font-style: italic; }
   option { color: #111; font-family: var(--sans); }
 
+  input[type="text"] {
+    width: 100%;
+    background: var(--bg-soft);
+    color: var(--ink);
+    border: 1px solid rgba(201,162,75,.28);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-family: var(--serif);
+    font-size: 19px;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  input[type="text"]::placeholder { color: var(--ink-dim); font-style: italic; }
+  input[type="text"]:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,162,75,.15);
+  }
+  #moodCustom { display: none; margin-top: 10px; }
+  #moodCustom.visible { display: block; animation: fadeUp .35s ease both; }
+
+  .loc-row { position: relative; }
+  .loc-row input { padding-right: 60px; }
+  .loc-btn {
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(201,162,75,.10);
+    border: 1px solid rgba(201,162,75,.35);
+    border-radius: 8px;
+    color: var(--gold);
+    cursor: pointer;
+    transition: background .2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .loc-btn:hover { background: rgba(201,162,75,.22); }
+  .loc-btn svg { width: 18px; height: 18px; }
+  .loc-btn.busy svg { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hint {
+    font-size: 11.5px; color: var(--ink-dim);
+    margin: 8px 2px 0; line-height: 1.5;
+  }
+
   .btn {
     font-family: var(--sans);
     font-size: 13px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
@@ -314,26 +357,25 @@
           <option value="melancholic">Melancholic</option>
           <option value="dreamy">Dreamy</option>
           <option value="dramatic">Dramatic</option>
+          <option value="energetic">Energetic</option>
           <option value="peaceful">Peaceful</option>
           <option value="romantic">Romantic</option>
           <option value="curious">Curious</option>
           <option value="rebellious">Rebellious</option>
+          <option value="__custom">Something else…</option>
         </select>
       </div>
+      <input type="text" id="moodCustom" placeholder="Name your feeling…" autocomplete="off" maxlength="40">
     </div>
     <div class="field">
-      <label for="loc">Your location</label>
-      <div class="select-wrap">
-        <select id="loc" required>
-          <option value="" disabled selected>Where are you?</option>
-          <option value="home">At home</option>
-          <option value="city">In the city</option>
-          <option value="sea">By the sea</option>
-          <option value="country">In the countryside</option>
-          <option value="mountains">In the mountains</option>
-          <option value="road">Traveling</option>
-        </select>
+      <label for="locInput">Your location</label>
+      <div class="loc-row">
+        <input type="text" id="locInput" placeholder="Where are you?" autocomplete="off">
+        <button type="button" class="loc-btn" id="locBtn" aria-label="Use my current location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        </button>
       </div>
+      <p class="hint" id="locHint">Tap the arrow and we'll match the art to your surroundings — or type a place.</p>
     </div>
     <button class="btn btn-gold" id="revealBtn" disabled>Reveal my masterpiece</button>
   </div>
@@ -405,21 +447,21 @@ const ART = [
     why:"Quiet abundance — even a wilting leaf is given its dignity.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Canestra_di_frutta_%28Caravaggio%29.jpg/1920px-Canestra_di_frutta_%28Caravaggio%29.jpg" },
   { t:"The Cardsharps", a:"Caravaggio", y:"c. 1595", m:"Kimbell Art Museum, Fort Worth",
-    moods:["joyful","curious","rebellious"], locs:["city","road"],
+    moods:["joyful","curious","rebellious","energetic"], locs:["city","road"],
     why:"A hustle in progress — keep your eye on the boy with the extra cards.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Caravaggio_-_The_Cardsharps_%281596-97%29_Kimbell_Art_Museum.jpg/1920px-Caravaggio_-_The_Cardsharps_%281596-97%29_Kimbell_Art_Museum.jpg" },
 
   // ——— Bosch ———
   { t:"The Garden of Earthly Delights", a:"Hieronymus Bosch", y:"1490–1510", m:"Museo del Prado, Madrid",
-    moods:["dreamy","curious","joyful"], locs:["country","home","sea"],
+    moods:["dreamy","curious","joyful","energetic"], locs:["country","home","sea"],
     why:"Five centuries old and still the strangest dream anyone ever painted.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/The_Garden_of_earthly_delights.jpg/1920px-The_Garden_of_earthly_delights.jpg" },
   { t:"The Haywain Triptych", a:"Hieronymus Bosch", y:"c. 1516", m:"Museo del Prado, Madrid",
-    moods:["curious","rebellious"], locs:["road","country"],
+    moods:["curious","rebellious","energetic"], locs:["road","country"],
     why:"The whole world chasing a wagon of hay — Bosch's sly portrait of desire.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bosch_-_Haywain_Triptych.jpg/1920px-Bosch_-_Haywain_Triptych.jpg" },
   { t:"Ship of Fools", a:"Hieronymus Bosch", y:"c. 1490–1500", m:"Musée du Louvre, Paris",
-    moods:["joyful","rebellious"], locs:["sea","road"],
+    moods:["joyful","rebellious","energetic"], locs:["sea","road"],
     why:"A boatload of revelers drifting nowhere in particular — sound familiar?",
     u:"https://upload.wikimedia.org/wikipedia/commons/a/a2/Jheronimus_Bosch_011.jpg" },
   { t:"The Conjurer", a:"Hieronymus Bosch", y:"1496–1520", m:"Musée Municipal, Saint-Germain-en-Laye",
@@ -441,7 +483,7 @@ const ART = [
     why:"Circus performers between towns, together and each entirely alone.",
     u:"https://upload.wikimedia.org/wikipedia/en/thumb/c/ca/Family_of_Saltimbanques.JPG/1920px-Family_of_Saltimbanques.JPG" },
   { t:"Les Demoiselles d'Avignon", a:"Pablo Picasso", y:"1907", m:"Museum of Modern Art, New York",
-    moods:["rebellious","dramatic"], locs:["city"],
+    moods:["rebellious","dramatic","energetic"], locs:["city"],
     why:"The painting that broke painting — five figures, zero apologies.",
     u:"https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Les_Demoiselles_d%27Avignon.jpg/1920px-Les_Demoiselles_d%27Avignon.jpg" },
   { t:"Guernica", a:"Pablo Picasso", y:"1937", m:"Museo Reina Sofía, Madrid",
@@ -471,7 +513,7 @@ const ART = [
     why:"The baker's daughter he loved — her armband bears his signature.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Raffaello_Sanzio_-_La_Fornarina_%28ca._1519-1520%29.jpg/1920px-Raffaello_Sanzio_-_La_Fornarina_%28ca._1519-1520%29.jpg" },
   { t:"Saint George and the Dragon", a:"Raffaello Sanzio", y:"c. 1506", m:"National Gallery of Art, Washington",
-    moods:["dramatic","rebellious","curious"], locs:["mountains","road"],
+    moods:["dramatic","rebellious","curious","energetic"], locs:["mountains","road"],
     why:"A tiny panel with all the courage of an epic.",
     u:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg/1920px-Raphael_-_Saint_George_and_the_Dragon_-_Google_Art_Project.jpg" },
 
@@ -493,28 +535,124 @@ const ART = [
     why:"Seen from above the world — stillness suspended over a quiet harbor.",
     u:"https://upload.wikimedia.org/wikipedia/en/8/8c/Christ_of_Saint_John_of_the_Cross.jpg" },
   { t:"Dream Caused by the Flight of a Bee", a:"Salvador Dalí", y:"1944", m:"Museo Thyssen-Bornemisza, Madrid",
-    moods:["dreamy","rebellious","joyful"], locs:["sea"],
+    moods:["dreamy","rebellious","joyful","energetic"], locs:["sea"],
     why:"One second before waking, painted at full surrealist volume.",
     u:"https://upload.wikimedia.org/wikipedia/en/d/df/Dream_Caused_by_the_Flight_of_a_Bumblebee_around_a_Pomegranate_a_Second_Before_Awakening.jpg" },
 ];
 
 const MOOD_LABEL = { joyful:"Joyful", melancholic:"Melancholic", dreamy:"Dreamy", dramatic:"Dramatic",
-                     peaceful:"Peaceful", romantic:"Romantic", curious:"Curious", rebellious:"Rebellious" };
-const LOC_LABEL  = { home:"at home", city:"in the city", sea:"by the sea", country:"in the countryside",
-                     mountains:"in the mountains", road:"traveling" };
+                     energetic:"Energetic", peaceful:"Peaceful", romantic:"Romantic", curious:"Curious",
+                     rebellious:"Rebellious" };
+
+const SYNONYMS = {
+  joyful:      ["happy","glad","cheerful","delighted","content","grateful","optimistic","ecstatic","elated","playful","silly","fun","joy","sunny","hopeful","proud"],
+  melancholic: ["sad","blue","down","depressed","gloomy","wistful","nostalgic","lonely","heartbroken","homesick","somber","grieving","melancholy","tearful","hurt"],
+  dreamy:      ["sleepy","surreal","floaty","imaginative","whimsical","spacey","pensive","reflective","introspective","thoughtful","daydreaming","hazy"],
+  dramatic:    ["intense","anxious","stressed","overwhelmed","tense","scared","afraid","fearful","dark","passionate","fierce","brooding","moody"],
+  energetic:   ["excited","hyper","pumped","motivated","energized","lively","vibrant","thrilled","spirited","exuberant","dynamic","restless","adventurous","inspired","stoked"],
+  peaceful:    ["calm","relaxed","serene","tranquil","tired","cozy","quiet","zen","mellow","chill","rested","meditative","soothed","sleepy","exhausted","drained","weary","burnt out","burned out"],
+  romantic:    ["loving","love","loved","affectionate","tender","longing","yearning","flirty","sensual","smitten"],
+  curious:     ["bored","interested","wondering","inquisitive","exploring","fascinated","thinking","puzzled","searching","confused"],
+  rebellious:  ["angry","defiant","frustrated","furious","rage","wild","mischievous","bold","daring","punk","annoyed"],
+};
+
+function resolveMood(text) {
+  const t = text.trim().toLowerCase();
+  if (!t) return null;
+  if (MOOD_LABEL[t]) return t;
+  for (const [key, words] of Object.entries(SYNONYMS)) {
+    if (key.startsWith(t) || t.startsWith(key)) return key;
+    for (const w of words)
+      if (w === t || (t.length >= 4 && (w.startsWith(t) || t.startsWith(w)))) return key;
+  }
+  return 'curious'; // an open mind suits a feeling we don't recognize
+}
 
 const $ = id => document.getElementById(id);
-const moodSel = $('mood'), locSel = $('loc'), revealBtn = $('revealBtn');
+const moodSel = $('mood'), moodCustom = $('moodCustom'),
+      locInput = $('locInput'), locBtn = $('locBtn'), locHint = $('locHint'),
+      revealBtn = $('revealBtn');
 let queue = [], qi = 0, current = null;
+let currentMood = null;
+let loc = { key: null, label: '', query: '' };
 
-function checkReady() { revealBtn.disabled = !(moodSel.value && locSel.value); }
-moodSel.addEventListener('change', checkReady);
-locSel.addEventListener('change', checkReady);
+function moodChoice() {
+  if (moodSel.value === '__custom') {
+    const txt = moodCustom.value.trim();
+    return txt ? { key: resolveMood(txt), label: txt } : null;
+  }
+  return moodSel.value ? { key: moodSel.value, label: MOOD_LABEL[moodSel.value] } : null;
+}
 
-function buildQueue(mood, loc) {
+function checkReady() { revealBtn.disabled = !moodChoice(); }
+moodSel.addEventListener('change', () => {
+  moodCustom.classList.toggle('visible', moodSel.value === '__custom');
+  if (moodSel.value === '__custom') moodCustom.focus();
+  checkReady();
+});
+moodCustom.addEventListener('input', checkReady);
+
+/* ——— location: geolocate or geocode typed place, then classify the surroundings ——— */
+const SEA_RX = /\b(sea|ocean|coast|coastal|beach|bay|island|isle|harbor|harbour|marina|port|cape|shore)\b/i;
+const LOC_VIBE = { sea:"by the water", mountains:"up in the mountains", city:"among the city lights", country:"in open country" };
+
+function classify({ elevation = 0, coastal = false, isCity = false }) {
+  if (elevation >= 900) return 'mountains';
+  if (coastal) return 'sea';
+  return isCity ? 'city' : 'country';
+}
+
+async function getElevation(lat, lon) {
+  try {
+    const r = await fetch(`https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`);
+    return (await r.json()).elevation[0] || 0;
+  } catch { return 0; }
+}
+
+locBtn.addEventListener('click', () => {
+  if (!navigator.geolocation) {
+    locHint.textContent = "Location isn't available in this browser — just type where you are.";
+    return;
+  }
+  locBtn.classList.add('busy');
+  locHint.textContent = 'Finding you…';
+  navigator.geolocation.getCurrentPosition(async pos => {
+    const { latitude: lat, longitude: lon } = pos.coords;
+    try {
+      const [geo, elevation] = await Promise.all([
+        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`).then(r => r.json()),
+        getElevation(lat, lon),
+      ]);
+      const place = geo.city || geo.locality || geo.principalSubdivision || 'your area';
+      const coastal = SEA_RX.test(JSON.stringify(geo.localityInfo || {})) || SEA_RX.test(place);
+      loc = { key: classify({ elevation, coastal, isCity: !!geo.city }), label: place, query: place };
+      locInput.value = place;
+      locHint.textContent = place + ' — ' + LOC_VIBE[loc.key] + '.';
+    } catch {
+      locHint.textContent = "Couldn't look that up — type your location instead.";
+    }
+    locBtn.classList.remove('busy');
+  }, err => {
+    locBtn.classList.remove('busy');
+    locHint.textContent = err.code === 1
+      ? 'No problem — type where you are instead.'
+      : "Couldn't get a fix — type where you are instead.";
+  }, { timeout: 10000, maximumAge: 300000 });
+});
+
+async function geocodeTyped(q) {
+  const r = await fetch('https://geocoding-api.open-meteo.com/v1/search?count=1&language=en&name=' + encodeURIComponent(q));
+  const hit = ((await r.json()).results || [])[0];
+  if (!hit) return { key: SEA_RX.test(q) ? 'sea' : null, label: q, query: q };
+  const coastal = SEA_RX.test(q) || SEA_RX.test(hit.name);
+  const isCity = (hit.population || 0) >= 80000 || /^PPLC/.test(hit.feature_code || '');
+  return { key: classify({ elevation: hit.elevation || 0, coastal, isCity }), label: hit.name, query: q };
+}
+
+function buildQueue(mood, locKey) {
   const scored = ART.map(p => ({
     p,
-    s: (p.moods.includes(mood) ? 3 : 0) + (p.locs.includes(loc) ? 1 : 0) + Math.random() * 0.5
+    s: (p.moods.includes(mood) ? 3 : 0) + (locKey && p.locs.includes(locKey) ? 1 : 0) + Math.random() * 0.5
   }));
   scored.sort((a, b) => b.s - a.s);
   const matches = scored.filter(x => x.s >= 3);
@@ -534,12 +672,24 @@ function show(p) {
   $('pArtist').textContent = p.a + ', ' + p.y;
   $('pMuseum').textContent = p.m;
   $('pWhy').textContent = p.why;
-  $('matchChip').textContent = MOOD_LABEL[moodSel.value] + ' · ' + LOC_LABEL[locSel.value];
+  $('matchChip').textContent = currentMood.label + (loc.label ? ' · ' + loc.label : '');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-revealBtn.addEventListener('click', () => {
-  queue = buildQueue(moodSel.value, locSel.value);
+revealBtn.addEventListener('click', async () => {
+  const mood = moodChoice();
+  if (!mood) return;
+  const typed = locInput.value.trim();
+  if (typed && typed !== loc.query) {
+    revealBtn.textContent = 'Reading the map…';
+    try { loc = await geocodeTyped(typed); }
+    catch { loc = { key: null, label: typed, query: typed }; }
+    revealBtn.textContent = 'Reveal my masterpiece';
+  } else if (!typed) {
+    loc = { key: null, label: '', query: '' };
+  }
+  currentMood = mood;
+  queue = buildQueue(mood.key, loc.key);
   qi = 0;
   $('intro').classList.remove('active');
   $('reveal').classList.add('active');
